@@ -161,5 +161,27 @@
 (use-package evil-nerd-commenter
   :defer t
   :bind ( ("C-ø" . evilnc-comment-or-uncomment-lines)))
-
-
+(use-package magit
+  :hook ((magit-pre-refresh . ignore)    ;; diff-hl-magit-pre-refresh is obsolete
+         (magit-post-refresh . ignore))  ;; diff-hl-magit-post-refresh is obsolete
+  :bind ("C-c m" . magit-status))
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode 1))
+(use-package blamer
+  :after magit
+  :bind (
+              ("C-c g i" . blamer-show-commit-info)
+              ("C-c g b" . blamer-show-posframe-commit-info))
+  :defer 20
+  :custom
+  (blamer-idle-time                 0.3)
+  (blamer-min-offset                4)
+  (blamer-max-commit-message-length 100)
+  (blamer-datetime-formatter        "[%s]")
+  (blamer-commit-formatter          " ? %s")
+  :custom-face
+  (blamer-face ((t :foreground "#008b8b"
+                    :background nil
+                    :height 1
+                    :italic nil))))

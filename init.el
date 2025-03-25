@@ -14,7 +14,7 @@
            recentf-mode                 ; Recently opened files
            savehist-mode                ; Prioritize recently used commands
 		   electric-pair-mode           ; Adds closing bracksts
-		   display-line-numbers-mode    ; Displays line numbers
+		   global-display-line-numbers-mode    ; Displays line numbers
            show-paren-mode))            ; Highlight matching parentheses
   (funcall mode 1))
 
@@ -63,6 +63,7 @@
 
 (when (member "JetBrainsMono NFM" (font-family-list))
   (set-face-attribute 'default nil :font "JetBrainsMono NFM" :height 115))
+(use-package nerd-icons)
 
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -185,3 +186,47 @@
                     :background nil
                     :height 1
                     :italic nil))))
+(use-package lsp-mode
+  :defer t
+  :hook ((java-mode             . lsp)
+         (c-mode                . lsp)
+         (lsp-mode              . lsp-enable-which-key-integration))
+
+  :bind (:map lsp-mode-map
+              ("M-<return>" . lsp-execute-code-action)
+              ("C-M-."      . lsp-find-references)
+              ("C-c r"      . lsp-rename))
+  
+  :config
+  (setq lsp-diagnostics-provider :flycheck)
+
+  (setq lsp-auto-guess-root t) ;; Enable lsp-mode for standalone files
+
+  (setq lsp-enable-on-type-formatting nil)
+  
+  ;; Visual features
+  (setq lsp-headerline-breadcrumb-enable nil  ;; No breadcrumbs
+        lsp-lens-enable                  nil  ;; No lenses
+
+        ;; Enable code actions in the mode line
+        lsp-modeline-code-actions-enable t
+        lsp-modeline-code-action-fallback-icon "?"
+
+        ;; Limit raising of the echo area to show docs
+        lsp-signature-doc-lines 3)
+  
+  (setq lsp-file-watch-threshold  500)
+  (setq lsp-format-buffer-on-save nil)
+
+  (with-eval-after-load 'lsp-modeline
+    (set-face-attribute 'lsp-modeline-code-actions-preferred-face nil
+                        :inherit 'font-lock-comment-face)
+    (set-face-attribute 'lsp-modeline-code-actions-face nil
+                        :inherit 'font-lock-comment-face)))
+(use-package lsp-ui
+  :after lsp-mode
+  :config
+  (setq lsp-ui-sideline-enable t
+        lsp-ui-doc-enable      nil))
+(use-package lsp-java
+  :hook (java-mode . lsp))

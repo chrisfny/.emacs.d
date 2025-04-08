@@ -186,7 +186,6 @@
                     :background nil
                     :height 1
                     :italic nil))))
-(add-hook 'java-mode-hook #'lsp-format-on-save)
 (use-package lsp-mode
   :defer t
   :hook ((java-mode             . lsp)

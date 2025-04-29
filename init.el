@@ -190,6 +190,7 @@
   :defer t
   :hook ((java-mode             . lsp)
          (c-mode                . lsp)
+		 (python-mode           . lsp)
          (lsp-mode              . lsp-enable-which-key-integration))
 
   :bind (:map lsp-mode-map
@@ -230,5 +231,9 @@
         lsp-ui-doc-enable      nil))
 (use-package lsp-java
   :hook (java-mode . lsp))
+
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright"))
 
 

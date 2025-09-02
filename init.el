@@ -35,7 +35,7 @@
 (setq-default tab-width 4                       ; Smaller tabs
               fill-column 79                    ; Maximum line width
                truncate-lines t                  ; Don't fold lines
-               indent-tabs-mode t              ; Use spaces instead of tabs
+               indent-tabs-mode nil              ; Use spaces instead of tabs
                split-width-threshold 160         ; Split verticly by default
                split-height-threshold nil        ; Split verticly by default
                frame-resize-pixelwise t          ; Fine-grained frame resize
@@ -155,6 +155,7 @@
         company-tooltip-margin             1
         company-detect-icons-margin        'company-dot-icons-margin)
   (global-company-mode t))
+
 (use-package flycheck
  :defer t
  :init (global-flycheck-mode)

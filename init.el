@@ -61,10 +61,6 @@
       auto-save-file-name-transforms
       `((".*" ,emacs-autosave-directory t)))
 
-(when (member "JetBrainsMono NFM" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrainsMono NFM" :height 115))
-(use-package nerd-icons)
-
 (require 'use-package)
 (setq use-package-always-ensure t)
 
@@ -78,6 +74,10 @@
         ("MELPA"        . 10)
         ("MELPA Stable" . 5)
         ("nongnu"       . 0)))
+
+(when (member "JetBrainsMono NFM" (font-family-list))
+  (set-face-attribute 'default nil :font "JetBrainsMono NFM" :height 115))
+(use-package nerd-icons)
 
 (use-package catppuccin-theme
   :ensure t

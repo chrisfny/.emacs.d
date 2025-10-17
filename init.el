@@ -75,8 +75,8 @@
         ("MELPA Stable" . 5)
         ("nongnu"       . 0)))
 
-(when (member "JetBrainsMono NFM" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrainsMono NFM" :height 115))
+(when (member "JetBrainsMono Nerd Font Mono" (font-family-list))
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono" :height 115))
 (use-package nerd-icons)
 
 (use-package catppuccin-theme

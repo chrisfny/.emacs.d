@@ -144,8 +144,8 @@
   (dashboard-setup-startup-hook))
 (use-package undo-fu
   :defer t
-  :bind (("C-_" . undo-fu-only-undo)
-         ("M-_" . undo-fu-only-redo)))
+  :bind (("C-?" . undo-fu-only-undo)
+         ("M-?" . undo-fu-only-redo)))
 (use-package company
   :config
   (setq company-idle-delay                 0.0

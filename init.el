@@ -134,7 +134,8 @@
 (use-package dashboard
   :config
   (setq dashboard-projects-backend 'project-el
-        dashboard-startup-banner 'logo
+        dashboard-startup-banner "~/.emacs.d/image/dashboard.jpg"
+        dashboard-image-banner-max-height 300
         dashboard-banner-logo-title nil
         dashboard-center-content t
         dashboard-page-separator "\n\n\n"
